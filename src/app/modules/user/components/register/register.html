@@ -1,0 +1,24 @@
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <label>
+    <p>UserName</p>
+    <input type="text" formControlName="username" />
+    @if (registerForm.controls.username.touched &&
+    registerForm.controls.username.invalid) {
+    <div class="err">必填</div>
+    }
+  </label>
+  <label>
+    <p>Password</p>
+    <input type="password" formControlName="password" />
+    @if ( registerForm.controls.password.touched &&
+    registerForm.controls.password.invalid) {
+    <div class="err">必填，至少 6 個字</div>
+    }
+  </label>
+  <pre>
+    <button type="submit" [disabled]="registerForm.invalid">送出</button>
+  </pre>
+</form>
+<pre>Status:{{ registerForm.status }}</pre>
+<pre>invalid:{{ registerForm.invalid }}</pre>
+<pre>touched:{{ registerForm.touched }}</pre>

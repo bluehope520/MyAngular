@@ -11,6 +11,6 @@ export class PostService {
     return this.colors;
   }
   show(id: number) {
-    return this.colors.find((c) => (c.id = id));
+    return this.colors.find((c) => c.id === id);
   }
 }

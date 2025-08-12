@@ -1,6 +1,10 @@
 <h3>{{ title }}</h3>
 <ul>
   @for (color of colors; track color.id){
-  <app-post-item [color]="color" (remove)="removeItem($event)"></app-post-item
+  <app-post-item
+    [color]="color"
+    (remove)="removeItem($event)"
+    [class.selected]="color.id === selectedId"
+  ></app-post-item
   >}
 </ul>

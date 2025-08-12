@@ -3,6 +3,7 @@ import { PostItem } from './components/post-item/post-item';
 import { Color } from './components/models/post.model';
 import { colors } from './colors';
 import { PostService } from './services/post-service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-post',
@@ -12,8 +13,18 @@ import { PostService } from './services/post-service';
 })
 export class Post {
   private postService = inject(PostService);
+  private activatedRoute = inject(ActivatedRoute);
 
   title = 'Posts';
+
+  selectedId?: number;
+  ngOnInit() {
+    this.activatedRoute.paramMap.subscribe((params) => {
+      const colorId = Number(params.get('id'));
+      this.selectedId = colorId;
+    });
+  }
+
   colors: Color[] = this.postService.index();
   // colors = [
   //   { id: 1, color: 'blue', feel: 'Feels calm and cool.' },
