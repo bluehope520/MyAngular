@@ -1,0 +1,13 @@
+<div class="demo">
+  <div class="sidebar">
+    <a [routerLink]="['./child-routes']" routerLinkActive="active"
+      >Child routes</a
+    >
+    <a [routerLink]="['/', { outlets: { popup: ['message'] } }]"
+      >Named Outlets</a
+    >
+  </div>
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
+</div>

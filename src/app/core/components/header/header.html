@@ -9,6 +9,8 @@
       [routerLinkActiveOptions]="{ exact: true }"
       >Post</a
     >
+    <a [routerLink]="[{ outlets: { popup: ['message'] } }]">Message</a>
+    <a routerLink="demo" routerLinkActive="active">Demo</a>
   </nav>
   <nav>
     <a routerLink="user" routerLinkActive="active">User</a>
