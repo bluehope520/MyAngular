@@ -1,12 +1,13 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { Post } from './modules/post/post';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [Post, RouterOutlet],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrl: './app.css',
 })
 export class App {
-  protected readonly title = signal('hope-angular');
+  title = 'Hope';
 }
