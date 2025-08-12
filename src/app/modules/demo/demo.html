@@ -6,6 +6,8 @@
     <a [routerLink]="['/', { outlets: { popup: ['message'] } }]"
       >Named Outlets</a
     >
+    <a [routerLink]="['./login']" routerLinkActive="active">Login</a>
+    <a [routerLink]="['./admin']" routerLinkActive="active">Admin</a>
   </div>
   <div class="content">
     <router-outlet></router-outlet>

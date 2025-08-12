@@ -1,0 +1,7 @@
+<h3>Login</h3>
+<p>Simelate login process.</p>
+@if(!authService.isLoggedIn){
+<button (click)="login()">Login</button>
+} @else {
+<button (click)="logout()">Logout</button>
+}
