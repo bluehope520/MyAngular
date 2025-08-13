@@ -1,3 +1,8 @@
 export class Color {
-  constructor(public id: number, public color: string, public feel?: string) {}
+  constructor(
+    public id: number,
+    public color: string,
+    public feel?: string,
+    public image?: string
+  ) {}
 }

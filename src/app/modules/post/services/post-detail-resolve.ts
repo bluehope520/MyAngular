@@ -8,6 +8,7 @@ import {
 } from '@angular/router';
 import { Color } from '../components/models/post.model';
 import { PostService } from './post-service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -17,16 +18,10 @@ export class PostDetailResolve implements Resolve<Color> {
   resolve(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ): MaybeAsync<Color | RedirectCommand> {
+  ): Observable<Color> {
     console.log('Post Detail resolve service');
     const postId = Number(route.paramMap.get('id'));
-    let data = this.postService.show(postId);
-    console.log('Post Detail resolve service data', data);
-    if (!data) {
-      data = { id: 5, color: 'this color is undefined' };
-    }
-    console.log('Post Detail resolve service data', data);
 
-    return data;
+    return this.postService.show(postId);
   }
 }

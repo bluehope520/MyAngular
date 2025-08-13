@@ -15,6 +15,7 @@ import {
   withEventReplay,
 } from '@angular/platform-browser';
 import { SelectivePreloadingStrategy } from './core/services/selective-preloading-strategy';
+import { provideHttpClient } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -23,5 +24,6 @@ export const appConfig: ApplicationConfig = {
     //withPreloading(SelectivePreloadingStrategy)使用自訂的預加載策略
     provideRouter(routes, withPreloading(SelectivePreloadingStrategy)),
     provideClientHydration(withEventReplay()),
+    provideHttpClient(),
   ],
 };

@@ -1,9 +1,13 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { PostItem } from './components/post-item/post-item';
 import { Color } from './components/models/post.model';
 import { colors } from './colors';
 import { PostService } from './services/post-service';
 import { ActivatedRoute } from '@angular/router';
+import { error } from 'console';
+import { HttpErrorResponse } from '@angular/common/http';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-post',
@@ -13,19 +17,47 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class Post {
   private postService = inject(PostService);
-  private activatedRoute = inject(ActivatedRoute);
+  private route = inject(ActivatedRoute);
 
   title = 'Posts';
+  // 1) 顏色清單用「可寫 Signal」
+  colors = signal<Color[]>([]);
 
-  selectedId?: number;
+  // 2) 從路由讀取 id，用 toSignal（undefined 代表未選）
+  selectedId = toSignal(
+    this.route.paramMap.pipe(
+      map((p) => (p.get('id') !== null ? Number(p.get('id')) : undefined))
+    ),
+    { initialValue: undefined }
+  );
+
   ngOnInit() {
-    this.activatedRoute.paramMap.subscribe((params) => {
-      const colorId = Number(params.get('id'));
-      this.selectedId = colorId;
+    // 把 API 回來的資料塞進 Signal → 觸發重繪
+    this.postService.index().subscribe({
+      next: (data) => this.colors.set(data),
+      error: (err) => console.warn('HttpErrorResponse:', err),
     });
   }
 
-  colors: Color[] = this.postService.index();
+  // selectedId?: number;
+  // ngOnInit() {
+  //   this.activatedRoute.paramMap.subscribe((params) => {
+  //     const colorId = Number(params.get('id'));
+  //     this.selectedId = colorId;
+  //   });
+
+  //   const color$ = this.postService.index();
+  //   const observer = {
+  //     next: (data: Color[]) => {
+  //       this.colors = data;
+  //     },
+  //     error: (error: HttpErrorResponse) => {
+  //       console.warn('HttpErrorResponse:', error);
+  //     },
+  //   };
+  //   color$.subscribe(observer);
+  // }
+
   // colors = [
   //   { id: 1, color: 'blue', feel: 'Feels calm and cool.' },
   //   { id: 2, color: 'red', feel: 'Looks bold and warm.' },
@@ -34,7 +66,11 @@ export class Post {
   // ];
 
   removeItem(color: Color) {
-    console.warn('removeItem', color);
-    this.colors = this.colors.filter((c) => c.id !== color.id);
+    this.colors.update((list) => list.filter((c) => c.id !== color.id));
   }
+
+  // removeItem(color: Color) {
+  //   console.warn('removeItem', color);
+  //   this.colors = this.colors.filter((c) => c.id !== color.id);
+  // }
 }
