@@ -11,14 +11,18 @@ import { PostService } from '../../services/post-service';
   styleUrl: './post-detail.css',
 })
 export class PostDetail {
-  private activatedRoute = inject(ActivatedRoute);
+  private route = inject(ActivatedRoute);
   private postService = inject(PostService);
   private router = inject(Router);
   color!: Color;
   ngOnInit() {
-    this.activatedRoute.paramMap.subscribe((params) => {
-      const colorId = Number(params.get('id'));
-      this.color = this.postService.show(colorId)!;
+    // this.activatedRoute.paramMap.subscribe((params) => {
+    //   const colorId = Number(params.get('id'));
+    //   console.warn('colorId', colorId);
+    //   this.color = this.postService.show(colorId)!;
+    // });
+    this.route.data.subscribe((data) => {
+      this.color = data['color'];
     });
   }
 
