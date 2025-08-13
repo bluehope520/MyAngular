@@ -3,6 +3,7 @@ import { Demo } from './demo';
 import { ChildRoutes } from './child-routes/child-routes';
 import { Login } from './login/login';
 import { authMatchGuard } from './auth/auth-guard';
+import { ObservableDemo } from './observable-demo/observable-demo';
 
 export const demoRoutes: Routes = [
   {
@@ -17,6 +18,7 @@ export const demoRoutes: Routes = [
         loadChildren: () =>
           import('./admin/admin.routes').then((r) => r.adminRoutes),
       },
+      { path: 'observable', component: ObservableDemo },
     ],
   },
 ];
