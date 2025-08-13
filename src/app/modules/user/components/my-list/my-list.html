@@ -1,0 +1,8 @@
+<h3 class="title">My List</h3>
+@for (color of colors(); track color.id) {
+<div>
+  <h4>{{ color.color }}</h4>
+  <img [src]="color.image" [alt]="color.color" />
+  <p><button (click)="removeItemFormList(color.id)">Remove</button></p>
+</div>
+}

@@ -1,37 +1,51 @@
 {
-  "post": [
+  "my-list": [
     {
-      "id": 1,
+      "id": "1",
       "color": "blue",
       "feel": "Feels calm and cool.",
       "image": "https://images.unsplash.com/photo-1501594907352-04cda38ebc29"
     },
     {
-      "id": 2,
+      "id": "1",
+      "color": "blue",
+      "feel": "Feels calm and cool.",
+      "image": "https://images.unsplash.com/photo-1501594907352-04cda38ebc29"
+    }
+  ],
+  "post": [
+    {
+      "id": "1",
+      "color": "blue",
+      "feel": "Feels calm and cool.",
+      "image": "https://images.unsplash.com/photo-1501594907352-04cda38ebc29"
+    },
+    {
+      "id": "2",
       "color": "red",
       "feel": "Looks bold and warm.",
       "image": "https://images.unsplash.com/photo-1506765515384-028b60a970df?ixlib=rb-1.2.1&auto=format&fit=crop&w=2832&q=80"
     },
     {
-      "id": 3,
+      "id": "3",
       "color": "green",
       "feel": "Brings a fresh vibe.",
       "image": "https://images.unsplash.com/photo-1501785888041-af3ef285b470"
     },
     {
-      "id": 4,
+      "id": "4",
       "color": "yellow",
       "feel": "Shines bright and cheerful.",
       "image": "https://images.unsplash.com/photo-1509228627152-72ae9ae6848d"
     },
     {
-      "id": 5,
+      "id": "5",
       "color": "purple",
       "feel": "Feels royal and mysterious.",
       "image": "https://images.unsplash.com/photo-1470770903676-69b98201ea1c?ixlib=rb-1.2.1&auto=format&fit=crop&w=2832&q=80"
     },
     {
-      "id": 6,
+      "id": "6",
       "color": "orange",
       "feel": "Feels vibrant and energetic.",
       "image": "https://images.unsplash.com/photo-1499955085172-a104c9463ece?ixlib=rb-1.2.1&auto=format&fit=crop&w=2832&q=80"

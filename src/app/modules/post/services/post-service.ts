@@ -9,6 +9,7 @@ import { catchError, Observable, retry, throwError, timer } from 'rxjs';
 export class PostService {
   private http = inject(HttpClient);
   postApi = 'http://localhost:3000/post';
+  myListApi = 'http://localhost:3000/my-list';
   // colors: Color[] = colors;
   index() {
     return this.http.get<Color[]>(this.postApi).pipe(
@@ -29,4 +30,14 @@ export class PostService {
       `HTTP ${error.status} ${error.statusText || ''}`.trim();
     return throwError(() => new Error(msg)); // 或：throwError(() => error)
   };
+
+  addToList(color: Color) {
+    return this.http.post<Color>(this.myListApi, color);
+  }
+  getMyList() {
+    return this.http.get<Color[]>(this.myListApi);
+  }
+  removeItemFormList(colorId: number) {
+    return this.http.delete(`${this.myListApi}/${colorId}`);
+  }
 }
